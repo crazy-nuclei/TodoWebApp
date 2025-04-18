@@ -1,7 +1,9 @@
 package com.crazy_nuclei.TodoApp.hello;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -33,7 +35,9 @@ public class SayHelloController {
     }
 
     @RequestMapping("hello-jsp")
-    public String sayHelloJsp() {
+    public String sayHelloJsp(@RequestParam(name = "name", required = false, defaultValue = "Guest") String name,
+                              Model model) {
+        model.addAttribute("name", name);
         return "sayHello";
     }
 }
