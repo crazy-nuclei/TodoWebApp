@@ -1,5 +1,7 @@
 package com.crazy_nuclei.TodoApp.hello;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class SayHelloController {
+
+    private static final Logger logger = LoggerFactory.getLogger(SayHelloController.class);
 
     @RequestMapping("hello")
     @ResponseBody
@@ -38,6 +42,7 @@ public class SayHelloController {
     public String sayHelloJsp(@RequestParam(name = "name", required = false, defaultValue = "Guest") String name,
                               Model model) {
         model.addAttribute("name", name);
+        logger.debug("Request param is : {}", name);
         return "sayHello";
     }
 }
